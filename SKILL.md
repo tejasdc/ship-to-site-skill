@@ -37,9 +37,7 @@ take slugs and do not compete with artifact URLs. The live address is `/stream/#
 If `.publish.json` exists in the project directory: run the command with NO flags.
 Report the live URL. Ask nothing. Done.
 
-## Updating or RENAMING an existing project — never create a duplicate
-
-### Taking a page offline
+## Taking a page offline
 
 Before `--unpublish`, read the site's takedown rules and existing `public/_redirects`.
 A native Astro page needs its route source removed as well as its listing. Cloudflare
@@ -49,6 +47,8 @@ dedicated public assets. Verify the custom-domain redirects and listing absence 
 browser; a missing build file or a 404 on the deployment URL is not sufficient.
 Evidence: the [2026-09-09 10K takedown](https://github.com/tejasdc/chann.app/commit/23bb572)
 reproduced retained assets after all three purge methods; retirement redirects bypassed them.
+
+## Updating or RENAMING an existing project — never create a duplicate
 
 The registry key is the **slug**. To change a published project's title, description,
 external URL, or specimen, edit those fields in the EXISTING `.publish.json` and re-run
