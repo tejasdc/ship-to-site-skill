@@ -157,6 +157,14 @@ Test to apply: does the page scroll? → flow. Is it a fullscreen fixed-layout a
 
 ## Laws
 
+- After adding or reordering project images, check the homepage and index sharing
+  metadata in the served HTML. Their `og:image` and `twitter:image` must identify
+  the site, independently of the first project card. Open the referenced image and
+  verify it loads: a correct card screenshot does not prove a correct link preview.
+  Evidence: Tejas's September 11, 2026 Cortex report exposed absent sharing metadata
+  on tejas.nyc after Cortex became the first project image; the intended site image
+  was its wave artwork. The [Open Graph contract](https://ogp.me/#metadata) provides
+  an explicit image URL to avoid relying on a crawler's fallback selection.
 - Content markdown is copied into the site repo at publish; the site's git history is
   the publication history. Project runtime files stay pointer-only: source of truth
   stays in the PROJECT directory and the site pulls those files at build. Never copy
