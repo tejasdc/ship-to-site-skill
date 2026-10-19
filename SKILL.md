@@ -1,6 +1,6 @@
 ---
 name: ship-to-site
-description: Publish any project, essay, note, or stream thought to Tejas's personal website tejas.nyc. Use when Tejas says "ship this to my site/personal website", "publish this", "add this to my garden/portfolio", "publish this thought/snippet to my stream", or similar, from ANY project directory. Handles first-publish judgment for slugged artifacts, then runs the deterministic publisher script.
+description: Publish any project, essay, note, or stream thought to Tejas's personal website tejas.nyc, or investigate why his published manifesto is an old copy. Use when Tejas says "ship this to my site/personal website", "publish this", "add this to my garden/portfolio", "publish this thought/snippet to my stream", or similar. Handles first-publish judgment for slugged artifacts, then runs the deterministic publisher script on remote-box.
 ---
 
 # ship-to-site — publish to tejas.nyc
@@ -13,7 +13,19 @@ the judgment the script cannot make.
 
 ## The command (does everything mechanical)
 
-    node /Users/tejasdc/workspace/chann-app/scripts/ship-to-site.mjs [flags]
+Run production publishing on `remote-box` only, from its site checkout:
+
+    node /root/workspace/chann-app/scripts/ship-to-site.mjs [flags]
+
+From a Mac session, SSH to `remote-box` first. If the source project exists only on the
+Mac, push its source through Git so it can be built on the box before publishing.
+Do not run the Mac checkout's publisher. On October 18, 2026, an older Mac checkout
+uploaded its original manifesto while publishing an unrelated page. The first repair
+wrongly removed the manual number gate; the old whole-site upload was the regression.
+Tejas: “the manual version bump was a system so that unnecessary changes don't flow
+into my manifesto.” [decision: manifesto-publish-number-is-release-gate] The site now uses a separate Pages production branch, but the
+server checkout remains the supported path. See the site project's `AGENTS.md` and
+notes runbook before changing the publication contract.
 
 Run from the project's directory (or pass --source). Useful queries:
 `--help` (usage), `--list` (registry), `--check-slug <slug>` (availability),
@@ -27,7 +39,7 @@ do not exist or are empty) — benign noise, not a failure.
 
 If Tejas says to publish a thought/snippet to the stream, ask nothing and run:
 
-    node /Users/tejasdc/workspace/chann-app/scripts/ship-to-site.mjs --stream "exact text"
+    node /root/workspace/chann-app/scripts/ship-to-site.mjs --stream "exact text"
 
 For longer snippets already in a file, use `--stream-file <path>`. Stream entries do not
 take slugs and do not compete with artifact URLs. The live address is `/stream/#<id>`.
